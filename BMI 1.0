@@ -1,0 +1,30 @@
+package bmi;
+
+import javax.swing.JOptionPane;
+/**
+ * Prosta aplikacja BMI
+ * Cezary Połosak
+ * */
+
+public class Contro 
+{
+	
+
+	public static void main(String[] args) 
+	{
+		//Okno pobiera potrzebne dane od uzytkownika imie, wzrost, wage	
+		String imie;
+		imie = JOptionPane.showInputDialog("Cześć, podaj swoje imię: ");
+		double wzrost = Double.parseDouble( JOptionPane.showInputDialog("Podaj wzrost: ")); 
+		double waga = Double.parseDouble(JOptionPane.showInputDialog("Podaj wagę: "));
+		
+		//Logika, oblicza BMI 
+		double bmi = waga/ Math.pow((wzrost / 100), 2);
+		
+		//Okno wyswietla wynik
+		JOptionPane.showMessageDialog(null, imie+ " twoje BMI wynosi: " + bmi);
+	        System.exit(0);
+		
+	}
+
+}
