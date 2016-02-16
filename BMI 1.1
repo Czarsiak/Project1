@@ -1,0 +1,158 @@
+package bmi;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Contro2 extends JFrame implements ActionListener {
+
+    private static final JButton JButton = null;
+    private JFrame frame;
+    private JPanel panel;
+    private JLabel heightLabel, weightLabel, BMILabel;
+    private JTextField height, weight, result;
+    private JButton calculate;
+    String Height, Weight;
+    double number1, number2, BMI;
+    static String output = "Results";
+    static int jopIcon = JOptionPane.QUESTION_MESSAGE;
+    boolean bFlag = true; 
+
+    public Contro2() {
+
+        frame = new JFrame("BMI Kalkulator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        heightLabel = new JLabel("Twój wzrost w centymetrach ");
+        weightLabel = new JLabel("Twoja waga w kilogramach: ");
+
+        BMILabel = new JLabel("Twoje BMI wynosi: ");
+
+        result = new JTextField("");
+
+        height = new JTextField(1);
+
+        weight = new JTextField(1);
+
+
+        calculate = new JButton("Oblicz BMI");
+
+
+        panel = new JPanel();
+
+
+        panel.add(heightLabel);
+        panel.add(height);
+
+        panel.add(weightLabel);
+        panel.add(weight);
+
+
+        panel.add(BMILabel);
+
+        panel.add(result);
+
+        panel.add(calculate);
+
+
+
+
+        frame.getContentPane().add(panel);
+
+        JPanel p1 = new JPanel();
+        panel.setLayout(new GridLayout(4, 1));
+        add(p1, BorderLayout.SOUTH);
+
+
+      
+
+        calculate.addActionListener(this);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(700, 700);
+        frame.setVisible(true);
+    }
+
+ 
+
+    public void calculateBMI(double number1, double number2) {
+        try {
+            BMI = number2 / ((number1/100) * 2);
+
+        } catch (NumberFormatException nfe) {
+            output += "\n\n błędne dane";
+            jopIcon = JOptionPane.ERROR_MESSAGE;
+        }
+    }
+
+    public void calculate() {
+        Height = height.getText();
+        Weight = weight.getText();
+
+        try {
+            number1 = Double.parseDouble(Height);
+            number2 = Double.parseDouble(Weight);
+
+            calculateBMI(number1, number2);
+
+
+
+        } finally {
+
+            if (BMI >= 27.5) {
+
+                //output += "\n\n Jesteś grubasem,przestańżreć!";
+            	System.out.println("jesteś gruby");
+            } else if (BMI <= 23 || BMI < 27.4) {
+
+                output += "\n\n Jesteś tłusty zacznij myślieć o diecie.";
+
+            } else if (BMI <= 18.5 || BMI < 22.9) {
+                output += " Jest spoko jeszcze chwilę pożyjesz!";
+
+            } else if (BMI < 18.4) {
+                output += "\n\n Zacznij coś jeść szkieletorze";
+
+            }
+        }
+
+    }
+
+	public static void main(String[] args) {
+
+
+
+
+      Contro2 bmi = new Contro2();
+         
+      
+
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+
+        this.calculate();
+
+        result.setText(BMI +"");
+        
+
+        
+      
+    }
+    
+
+    }
+
+
