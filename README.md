@@ -1,1 +1,1 @@
-# Project1
+Prosta aplikacja obliczajaca BMI w dwoch wersjach
